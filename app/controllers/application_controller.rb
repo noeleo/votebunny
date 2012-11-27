@@ -7,4 +7,11 @@ class ApplicationController < ActionController::Base
     redirect_to login_path and return unless @user
   end
 
+  def logged_in?
+    if User.find_by_id(session[:user_id])
+      return true
+    else
+      return false
+    end
+  end
 end

@@ -56,7 +56,7 @@ Votebunny::Application.routes.draw do
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
 
-  root :to => 'home#show', :as => 'home'
+  root :to => 'login#show', :as => 'home'
 
   # login
   match '/login' => 'sessions#show', :via => :get, :as => 'show_login'

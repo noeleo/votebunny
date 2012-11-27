@@ -1,6 +1,8 @@
 class SessionsController < ApplicationController
 
   def show
+    # if already logged in, don't show login page
+    redirect_to elections_path and return if logged_in?
   end
 
   def login
