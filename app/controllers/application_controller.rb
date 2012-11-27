@@ -7,6 +7,16 @@ class ApplicationController < ActionController::Base
     redirect_to login_path and return unless @user
   end
 
+  def set_election
+    @election = Election.find_by_id(params[:eid])
+    redirect_to elections_path unless @user.elections.include? @election
+  end
+
+  def set_position
+    @position = Position.find_by_id(params[:pid])
+    redirect_to elections_path unless @election.positions.include? @position
+  end
+
   def logged_in?
     if User.find_by_id(session[:user_id])
       return true

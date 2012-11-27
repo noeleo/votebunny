@@ -1,0 +1,17 @@
+<h1>Positions</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Candidate</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @position.candidates.each do |candidate| %>
+    <tr>
+      <td><%= candidate.name %></td>
+      <td><%= button_to "Vote", vote_path(@election.id, @position.id, candidate.id) %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

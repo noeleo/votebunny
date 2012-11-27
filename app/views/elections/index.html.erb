@@ -10,9 +10,9 @@
   <tbody>
   <% @user.elections.each do |election| %>
     <tr>
-      <td><%= link_to election.title, election_path(election.id) %>
-      <td><%= election.positions.length %>
-      <td><%= election.candidates.length %>
+      <td><%= link_to election.title, election_path(election.id) %></td>
+      <td><%= election.positions.length %></td>
+      <td><%= election.candidates.length %></td>
     </tr>
   <% end %>
   </tbody>

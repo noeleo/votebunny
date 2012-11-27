@@ -1,0 +1,17 @@
+<h1>Positions</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Position</th>
+      <th>Candidates</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @election.positions.each do |position| %>
+    <tr>
+      <td><%= link_to position.title, position_path(@election.id, position.id) %></td>
+      <td><%= position.candidates.length %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
