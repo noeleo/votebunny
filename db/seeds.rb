@@ -7,6 +7,7 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 User.create(:password => 'wadup', :is_admin => true)
+Election.create(:title => 'Test')
 e = Election.create(:title => 'IEEE Director Elections')
 u = User.new(:password => 'xxx', :is_admin => false)
 u.elections << e
