@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
     if params[:password]
       uid = User.find_by_password(params[:password])
       if uid
-        session[:uid] = uid
+        session[:user_id] = uid
         redirect_to home_path and return
       end
     end
@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    session[:uid] = nil
+    session[:user_id] = nil
     flash[:notice] = "You logged out!"
   end
 

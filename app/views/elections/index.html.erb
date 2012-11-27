@@ -1,0 +1,18 @@
+<h1>Elections</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Election</th>
+      <th>Positions</th>
+      <th>Candidates</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @user.elections.each do |election| %>
+    <tr>
+      <td><%= link_to election.title, election_path(election.id) %>
+      <td><%= election.positions.length %>
+      <td><%= election.candidates.length %>
+    </tr>
+  </tbody>
+</table>
