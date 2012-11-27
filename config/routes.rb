@@ -55,4 +55,12 @@ Votebunny::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+
+  root :to => 'home#show', :as => 'home'
+
+  # login
+  match '/login' => 'sessions#show', :via => :get, :as => 'show_login'
+  match '/login' => 'sessions#login', :via => :post, :as => 'login'
+  match '/logout' => 'sessions#destroy', :as => 'logout'
+
 end
