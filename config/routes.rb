@@ -62,5 +62,11 @@ Votebunny::Application.routes.draw do
   match '/login' => 'sessions#show', :via => :get, :as => 'show_login'
   match '/login' => 'sessions#login', :via => :post, :as => 'login'
   match '/logout' => 'sessions#destroy', :as => 'logout'
-
+  # elections
+  match '/elections' => 'elections#index', :as => 'elections'
+  match '/elections/:eid' => 'elections#show', :as => 'election'
+  # positions
+  match '/elections/:eid/positions' => 'positions#index', :as => 'positions'
+  match '/elections/:eid/positions/:pid' => 'positions#show', :via => :get, :as => 'position'
+  match '/elections/:eid/positions/:pid' => 'positions#vote', :via => :post, :as => 'vote'
 end
