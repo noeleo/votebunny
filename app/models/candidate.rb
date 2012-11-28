@@ -1,6 +1,9 @@
 class Candidate < ActiveRecord::Base
-  attr_accessible :name
+  attr_accessible :name, :election
+
+  validates :name, :presence => true
 
   belongs_to :election
   has_and_belongs_to_many :positions, :uniq => true
+  has_many :votes
 end

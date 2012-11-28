@@ -13,22 +13,17 @@ u = User.new(:password => 'xxx', :is_admin => false)
 u.elections << e
 u.save
 
-p1 = Position.new(:title => 'Indrel Director')
-p1.election = e
+p1 = Position.new(:title => 'Indrel Director', :election => e)
 p1.save
-p2 = Position.new(:title => 'Activities Director')
-p2.election = e
+p2 = Position.new(:title => 'Activities Director', :election => e)
 p2.save
-c = Candidate.new(:name => 'Alice')
-c.election = e
+c = Candidate.new(:name => 'Alice', :election => e)
 c.positions << p1
 c.save
-c = Candidate.new(:name => 'Bob')
-c.election = e
+c = Candidate.new(:name => 'Bob', :election => e)
 c.positions << p2
 c.save
-c = Candidate.new(:name => 'Charlie')
-c.election = e
+c = Candidate.new(:name => 'Charlie', :election => e)
 c.positions << p1
 c.positions << p2
 c.save
