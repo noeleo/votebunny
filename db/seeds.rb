@@ -6,24 +6,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-User.create(:password => 'wadup', :is_admin => true)
-Election.create(:title => 'Test')
-e = Election.create(:title => 'IEEE Director Elections')
+User.create!(:password => 'wadup', :is_admin => true)
+Election.create!(:title => 'Test')
+e = Election.create!(:title => 'IEEE Director Elections')
 u = User.new(:password => 'xxx', :is_admin => false)
 u.elections << e
-u.save
+u.save!
 
 p1 = Position.new(:title => 'Indrel Director', :election => e)
-p1.save
+p1.save!
 p2 = Position.new(:title => 'Activities Director', :election => e)
-p2.save
+p2.save!
 c = Candidate.new(:name => 'Alice', :election => e)
 c.positions << p1
-c.save
+c.save!
 c = Candidate.new(:name => 'Bob', :election => e)
 c.positions << p2
-c.save
+c.save!
 c = Candidate.new(:name => 'Charlie', :election => e)
 c.positions << p1
 c.positions << p2
-c.save
+c.save!

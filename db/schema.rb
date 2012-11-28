@@ -45,16 +45,16 @@ ActiveRecord::Schema.define(:version => 20121127230720) do
 
   create_table "users", :force => true do |t|
     t.string   "password"
-    t.boolean  "is_admin"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.boolean  "is_admin",   :default => false, :null => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
   end
 
   create_table "votes", :force => true do |t|
     t.integer  "user_id"
     t.integer  "position_id"
-    t.integer  "candidate_id"
     t.integer  "rank"
+    t.integer  "candidate_id"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
