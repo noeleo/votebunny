@@ -1,5 +1,5 @@
 class Vote < ActiveRecord::Base
-  attr_accessible :user, :position, :candidate
+  attr_accessible :user, :position, :rank, :candidate
 
   belongs_to :user
   belongs_to :position
@@ -7,16 +7,14 @@ class Vote < ActiveRecord::Base
 
   # vote for a candidate for a position
   # assumes correct input is being passed
-  def self.vote(user, position, candidate)
-    v = Vote.create(:user => user, :position => position, :candidate => candidate)
-#success = v.save
-    # if this is a duplicate, update the record
-    if not success
-      v = Vote.where("user_id = ? AND position_id = ?", user.id, position.id)
+  def self.vote(user, position, candidate, rank)
+    begin
+      Vote.create!(:user => user, :position => position, :candidate => candidate, :rank => rank)
+    rescue
+      v = Vote.where("user_id = ? AND position_id = ? AND rank = ?", user.id, position.id, rank).limit(1).first
       v.candidate = candidate
-      success = v.save
+      v.save
     end
-    return success
   end
 
 end

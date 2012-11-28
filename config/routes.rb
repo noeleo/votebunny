@@ -67,5 +67,5 @@ Votebunny::Application.routes.draw do
   match '/election/:eid' => 'elections#show', :as => 'election'
   # positions
   match '/election/:eid/position/:pid' => 'positions#show', :via => :get, :as => 'position'
-  match '/election/:eid/position/:pid/:cid' => 'positions#vote', :via => :post, :as => 'vote'
+  match '/election/:eid/position/:pid' => 'positions#vote', :via => :post, :as => 'vote'
 end

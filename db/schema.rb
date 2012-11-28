@@ -54,10 +54,11 @@ ActiveRecord::Schema.define(:version => 20121127230720) do
     t.integer  "user_id"
     t.integer  "position_id"
     t.integer  "candidate_id"
+    t.integer  "rank"
     t.datetime "created_at",   :null => false
     t.datetime "updated_at",   :null => false
   end
 
-  add_index "votes", ["user_id", "position_id"], :name => "index_votes_on_user_id_and_position_id", :unique => true
+  add_index "votes", ["user_id", "position_id", "rank"], :name => "index_votes_on_user_id_and_position_id_and_rank", :unique => true
 
 end

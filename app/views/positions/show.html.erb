@@ -1,17 +1,23 @@
+<%= render '/header' %>
+
 <h1>Positions</h1>
-<table>
-  <thead>
-    <tr>
-      <th>Candidate</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @position.candidates.each do |candidate| %>
-    <tr>
-      <td><%= candidate.name %></td>
-      <td><%= button_to "Vote", vote_path(@election.id, @position.id, candidate.id) %></td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+
+<%= form_tag vote_path(@election.id, @position.id) do %>
+  <table>
+    <thead>
+      <tr>
+        <th>Rank</th>
+        <th>Candidate</th>
+      </tr>
+    </thead>
+    <tbody>
+    <% 1.upto([3, @position.candidates.length].min) do |rank| %>
+      <tr>
+        <td><%= rank %></td>
+        <td><%= select(:vote, rank, @position.candidates.collect {|c| [c.name, c.id]}) %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+  <%= submit_tag "Vote!" %>
+<% end %>
