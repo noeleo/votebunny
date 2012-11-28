@@ -1,22 +1,9 @@
 class PositionsController < ApplicationController
   before_filter :set_current_user
   before_filter :set_election
-  before_filter :set_position, :except => [:new, :create]
-  before_filter :only_admin, :only => [:new, :create, :edit, :update]
+  before_filter :set_position
 
   def show
-  end
-
-  def new
-  end
-
-  def create
-  end
-
-  def edit
-  end
-
-  def update
   end
 
   def vote

@@ -26,10 +26,22 @@ Votebunny::Application.routes.draw do
   match '/logout' => 'sessions#destroy', :as => 'logout'
   # elections
   match '/elections' => 'elections#index', :as => 'elections'
-  match '/election/new' => 'elections#new', :as => 'new_election'
-  match '/election/create' => 'elections#create', :as => 'create_election'
   match '/election/:eid' => 'elections#show', :as => 'election'
   # positions
   match '/election/:eid/position/:pid' => 'positions#show', :via => :get, :as => 'position'
   match '/election/:eid/position/:pid' => 'positions#vote', :via => :post, :as => 'vote'
+  # admin stuff
+  match '/admin' => 'admin#index', :as => 'admin'
+  match '/admin/election/new' => 'admin#new_election', :as => 'new_election'
+  match '/admin/election/create' => 'admin#create_election', :as => 'create_election'
+  match '/admin/election/:eid/edit' => 'admin#edit_election', :as => 'edit_election'
+  match '/admin/election/:eid/update' => 'admin#update_election', :as => 'update_election'
+
+  match '/admin/election/:eid/position/new' => 'admin#new_position', :as => 'new_position'
+  match '/admin/election/:eid/position/create' => 'admin#create_position', :as => 'create_position'
+  match '/admin/election/:eid/position/:pid/edit' => 'admin#edit_position', :as => 'edit_position'
+  match '/admin/election/:eid/position/:pid/update' => 'admin#update_position', :as => 'update_position'
+
+  match '/admin/user/new' => 'admin#new_user', :as => 'new_user'
+  match '/admin/user/create' => 'admin#create_user', :as => 'create_user'
 end

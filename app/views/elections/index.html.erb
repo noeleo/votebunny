@@ -4,6 +4,9 @@
 <table>
   <thead>
     <tr>
+      <% if @user.is_admin %>
+        <th></th>
+      <% end %>
       <th>Election</th>
       <th>Positions</th>
       <th>Candidates</th>
@@ -12,6 +15,9 @@
   <tbody>
   <% @user.elections.each do |election| %>
     <tr>
+      <% if @user.is_admin %>
+        <td><%= link_to "Edit", edit_election_path(election.id) %></td>
+      <% end %>
       <td><%= link_to election.title, election_path(election.id) %></td>
       <td><%= election.positions.length %></td>
       <td><%= election.candidates.length %></td>

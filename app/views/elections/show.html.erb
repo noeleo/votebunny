@@ -1,11 +1,15 @@
 <%= render '/header' %>
 
 <%= link_to 'Elections', elections_path %>
+<%= link_to 'New Position', new_position_path %>
 
 <h1>Positions</h1>
 <table>
   <thead>
     <tr>
+      <% if @user.is_admin %>
+        <th></th>
+      <% end %>
       <th>Position</th>
       <th>Candidates</th>
     </tr>
@@ -13,6 +17,9 @@
   <tbody>
   <% @election.positions.each do |position| %>
     <tr>
+      <% if @user.is_admin %>
+        <td><%= link_to "Edit", edit_position_path(@election.id, position.id) %></td>
+      <% end %>
       <td><%= link_to position.title, position_path(@election.id, position.id) %></td>
       <td><%= position.candidates.length %></td>
     </tr>
