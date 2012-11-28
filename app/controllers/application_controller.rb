@@ -17,11 +17,10 @@ class ApplicationController < ActionController::Base
     redirect_to elections_path unless @election.positions.include? @position
   end
 
-  def logged_in?
-    if User.find_by_id(session[:user_id])
-      return true
-    else
-      return false
+  def only_admin
+    if not @user.is_admin
+      flash[:error] = "You have to be an admin to do that!"
+      redirect_to elections_path and return
     end
   end
 end

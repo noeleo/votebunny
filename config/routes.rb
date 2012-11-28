@@ -13,57 +13,21 @@ Votebunny::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-  # Sample resource route with sub-resources:
-  #   resources :products do
-  #     resources :comments, :sales
-  #     resource :seller
-  #   end
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
-
-  # Sample resource route within a namespace:
-  #   namespace :admin do
-  #     # Directs /admin/products/* to Admin::ProductsController
-  #     # (app/controllers/admin/products_controller.rb)
-  #     resources :products
-  #   end
-
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
   # root :to => 'welcome#index'
 
   # See how all your routes lay out with "rake routes"
 
-  # This is a legacy wild controller route that's not recommended for RESTful applications.
-  # Note: This route will make all actions in every controller accessible via GET requests.
-  # match ':controller(/:action(/:id))(.:format)'
-
   root :to => 'sessions#show', :as => 'home'
-
   # login
   match '/login' => 'sessions#show', :via => :get, :as => 'show_login'
   match '/login' => 'sessions#login', :via => :post, :as => 'login'
   match '/logout' => 'sessions#destroy', :as => 'logout'
   # elections
   match '/elections' => 'elections#index', :as => 'elections'
+  match '/election/new' => 'elections#new', :as => 'new_election'
+  match '/election/create' => 'elections#create', :as => 'create_election'
   match '/election/:eid' => 'elections#show', :as => 'election'
   # positions
   match '/election/:eid/position/:pid' => 'positions#show', :via => :get, :as => 'position'

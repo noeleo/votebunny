@@ -1,2 +1,4 @@
 <%= flash[:notice] if flash[:notice] %>
 <%= flash[:error] if flash[:error] %>
+<%= link_to 'Logout', logout_path if @user %>
+<%= link_to 'New Election', new_election_path if @user.is_admin %>

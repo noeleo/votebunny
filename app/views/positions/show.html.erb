@@ -1,5 +1,7 @@
 <%= render '/header' %>
 
+<%= 'Elections', elections_path %>
+
 <h1>Positions</h1>
 
 <%= form_tag vote_path(@election.id, @position.id) do %>

@@ -2,7 +2,7 @@ class SessionsController < ApplicationController
 
   def show
     # if already logged in, don't show login page
-    redirect_to elections_path and return if logged_in?
+    redirect_to elections_path and return if params[:user_id]
   end
 
   def login

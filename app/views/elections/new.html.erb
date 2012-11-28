@@ -1,0 +1,9 @@
+<%= render '/header' %>
+
+<%= link_to 'Elections', elections_path %>
+
+<%= form_tag create_election_path do %>
+  <%= label :election, :title, 'Title:' %>
+  <%= text_field :election, :title %>
+  <%= submit_tag 'Create New Election' %>
+<% end %>
