@@ -11,7 +11,7 @@ class PositionsController < ApplicationController
       Vote.vote(@user, @position, candidate)
     else
       flash[:error] = "You can't do that!"
-      redirect_to election_path(@election.id) and return
     end
+    redirect_to election_path(@election.id) and return
   end
 end
