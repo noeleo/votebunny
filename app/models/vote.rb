@@ -17,4 +17,17 @@ class Vote < ActiveRecord::Base
     end
   end
 
+  def self.count_votes(position)
+    votes = {}
+    ranks = [3, position.candidates.count].min
+    position.candidates.each do |candidate|
+      votes[candidate.name] = {}
+      1.upto(ranks) do |rank|
+        num_votes = Vote.where("position_id = ? AND candidate_id = ? AND rank = ?", position.id, candidate.id, rank).count
+        votes[candidate.name][rank] = num_votes
+      end
+    end
+    return votes
+  end
+
 end

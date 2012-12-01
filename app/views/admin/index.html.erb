@@ -1,0 +1,5 @@
+<%= render '/header' %>
+
+<% @elections.each do |election| %>
+  <%= link_to election.title, admin_election_path(election.id) %>
+<% end %>

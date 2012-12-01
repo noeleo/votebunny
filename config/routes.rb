@@ -34,6 +34,7 @@ Votebunny::Application.routes.draw do
   match '/admin' => 'admin#index', :as => 'admin'
   match '/admin/election/new' => 'admin#new_election', :as => 'new_election'
   match '/admin/election/create' => 'admin#create_election', :as => 'create_election'
+  match '/admin/election/:eid' => 'admin#show', :as => 'admin_election'
   match '/admin/election/:eid/edit' => 'admin#edit_election', :as => 'edit_election'
   match '/admin/election/:eid/update' => 'admin#update_election', :as => 'update_election'
 

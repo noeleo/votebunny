@@ -1,0 +1,23 @@
+<%= render '/header' %>
+
+<% @positions.each do |position, rankings| %>
+<table summary="<%= position %>">
+  <thead>
+    <tr>
+      <th>Candidate</th>
+    <% 1.upto(@num_ranks[position]) do |rank| %>
+      <th><%= rank %></th>
+    <% end %>
+    </tr>
+  </thead>
+  <tbody>
+  <% rankings.each do |candidate, ranks| %>
+    <tr>
+      <td><%= candidate %></td>
+    <% ranks.each do |rank, num_votes| %>
+      <td><%= num_votes%></td>
+    <% end %>
+    </tr>
+  <% end %>
+  </tbody>
+<% end %>
