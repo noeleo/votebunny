@@ -1,6 +1,7 @@
 class AdminController < ApplicationController
   before_filter :set_current_user, :only_admin
-  before_filter :set_election, :only => [:show, :new_position, :create_position]
+  before_filter :set_election, :only => [:show, :new_position, :create_position, :new_candidate, :create_candidate]
+  before_filter :set_position, :only => [:new_candidate, :create_candidate]
 
   def index
     @elections = Election.all
@@ -19,6 +20,9 @@ class AdminController < ApplicationController
   end
 
   def new_position
+  end
+
+  def new_candidate
   end
 
   def create_election
@@ -45,4 +49,17 @@ class AdminController < ApplicationController
     end
   end
 
+  # this does not create a candidate that allows for other positions
+  def create_candidate
+    c = Candidate.new(params[:candidate])
+    c.election = @election
+    c.positions << @position
+    if c.save
+      flash[:notice] = "New candidate created!"
+      redirect_to position_path(@election.id, @position.id) and return
+    else
+      flash[:error] = "Whoops, couldn't create a new position!"
+      redirect_to new_position_path and return
+    end
+  end
 end

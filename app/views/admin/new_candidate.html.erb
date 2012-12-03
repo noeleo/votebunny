@@ -1,0 +1,9 @@
+<%= render '/header' %>
+
+<%= link_to 'Elections', elections_path %>
+
+<%= form_tag create_candidate_path(@election.id, @position.id) do %>
+  <%= label :candidate, :name, 'Name:' %>
+  <%= text_field :candidate, :name %>
+  <%= submit_tag 'Create New Candidate' %>
+<% end %>

@@ -11,8 +11,13 @@ class Vote < ActiveRecord::Base
     begin
       Vote.create!(:user => user, :position => position, :candidate => candidate, :rank => rank)
     rescue
-      v = Vote.where("user_id = ? AND position_id = ? AND rank = ?", user.id, position.id, rank).limit(1).first
-      v.candidate = candidate
+      # remove all votes from this user for this position
+      votes = Vote.where("user_id = ? AND position_id = ?", user.id, position.id)
+      votes.each do |vote|
+        vote.destroy
+      end
+      # do it again
+      v = Vote.new(:user => user, :position => position, :candidate => candidate, :rank => rank)
       v.save
     end
   end

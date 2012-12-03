@@ -1,7 +1,9 @@
 <%= render '/header' %>
 
 <% @positions.each do |position, rankings| %>
-<table summary="<%= position %>">
+<br>
+<%= position %>
+<table cellspacing="15">
   <thead>
     <tr>
       <th>Candidate</th>
@@ -20,4 +22,5 @@
     </tr>
   <% end %>
   </tbody>
+</table>
 <% end %>
