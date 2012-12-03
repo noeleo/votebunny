@@ -10,7 +10,7 @@
 e = Election.create!(:title => 'IEEE Director Elections')
 
 # create admin
-u = User.new(:password => 'wadup', :is_admin => true)
+u = User.new(:password => 'noelmon69', :is_admin => true)
 u.elections << e
 u.save!
 
