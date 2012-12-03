@@ -15,14 +15,20 @@ u.elections << e
 u.save!
 
 # create users
-passwords = ['xx', 'yy']
+=begin
+passwords = ['yX679', 'ywer7', 'aax67', 'smd69', 'gnwer9', 'asf7s', '91xls',
+          'pus11', 'uio99', 'asdf2', 'us934', 'sdfna', '09bcs', 'sdfj1',
+          '0sdbn', 'sdf11', 'mane1', 'pqo24', 'ps7aq', 'usZfj', 'ifj4w',
+          'ksi88']
 passwords.each do |pw|
   u = User.new(:password => pw, :is_admin => false)
   u.elections << e
   u.save!
 end
+=end
 
 # create positions and candidates
+=begin
 runners = {
   'Indrel Director' => ['Jamshed', 'Harrison', 'Vikram', 'Marion'],
   'Activities Director' => ['Ino', 'Leland', 'Alice'],
@@ -42,3 +48,4 @@ runners.each do |position, candidates|
     c.save!
   end
 end
+=end

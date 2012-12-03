@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_filter :set_current_user, :only_admin
-  before_filter :set_election, :only => [:show, :new_position, :create_position, :new_candidate, :create_candidate]
+  before_filter :set_election, :only => [:show, :new_position, :create_position, :new_candidate, :create_candidate, :create_user]
   before_filter :set_position, :only => [:new_candidate, :create_candidate]
 
   def index
@@ -59,6 +59,21 @@ class AdminController < ApplicationController
       redirect_to position_path(@election.id, @position.id) and return
     else
       flash[:error] = "Whoops, couldn't create a new position!"
+      redirect_to new_position_path and return
+    end
+  end
+
+  def create_user
+    u = User.new
+    pwd = ""
+    5.times{pwd << (65 + rand(50)).chr}
+    u.password = pwd
+    u.elections << @election
+    if u.save
+      flash[:notice] = "New user created with password " + pwd
+      redirect_to election_path(@election.id) and return
+    else
+      flash[:error] = "Whoops, couldn't create a new user!"
       redirect_to new_position_path and return
     end
   end
