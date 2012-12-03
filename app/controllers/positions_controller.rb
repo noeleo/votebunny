@@ -18,7 +18,7 @@ class PositionsController < ApplicationController
       end
     end
     if votes.values != votes.values.uniq
-      flash[:error] = "You must vote for unique people!"
+      flash[:error] = "Don't fuck with me, you must vote for unique people!"
       redirect_to position_path(@election.id, @position.id) and return
     end
 
