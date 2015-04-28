@@ -1,6 +1,6 @@
 class AdminController < ApplicationController
   before_filter :set_current_user, :only_admin
-  before_filter :set_election, :only => [:show, :new_position, :create_position, :new_candidate, :create_candidate, :create_user]
+  before_filter :set_election, :only => [:show, :new_position, :create_position, :new_candidate, :create_candidate, :create_users, :show_users]
   before_filter :set_position, :only => [:new_candidate, :create_candidate]
 
   def index
@@ -63,18 +63,50 @@ class AdminController < ApplicationController
     end
   end
 
-  def create_user
+  def create_users
+    if not params[:num_users]
+      flash[:error] = "Num users not specified"
+      redirect_to election_path(@election.id) and return
+    end
+    num_to_create = params[:num_users].to_i
+    if num_to_create == 0 or num_to_create > 50
+      flash[:error] = "That is not a valid number or cannot create that many at once"
+      redirect_to election_path(@election.id) and return
+    end
+
+    passwords = []
+    created = 0
+    num_to_create.times{
+      new_password = create_user(@election)
+      if new_password
+        created += 1
+        passwords << new_password
+      end
+    }
+
+    flash[:notice] = "Created " + created.to_s + " new users!"
+    redirect_to users_path(@election.id)
+  end
+
+  def show_users
+    @users = Election.find_by_id(@election.id).users
+  end
+
+  private
+  def create_user(election)
     u = User.new
     pwd = ""
-    5.times{pwd << (65 + rand(50)).chr}
+    loop do
+      pwd = ""
+      5.times{pwd << (65 + rand(50)).chr}
+      break if not User.find_by_password(pwd)
+    end
     u.password = pwd
-    u.elections << @election
+    u.elections << election
     if u.save
-      flash[:notice] = "New user created with password " + pwd
-      redirect_to election_path(@election.id) and return
+      return u.password
     else
-      flash[:error] = "Whoops, couldn't create a new user!"
-      redirect_to new_position_path and return
+      return nil
     end
   end
 end

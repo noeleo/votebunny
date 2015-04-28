@@ -1,0 +1,10 @@
+<%= render '/header' %>
+
+<br>
+<br>
+Showing all <%= @users.count %> users:
+<br>
+<% @users.each do |user| %>
+  <br>
+  <%= user.password %>
+<% end %>

@@ -2,7 +2,12 @@
 
 <%= link_to 'Elections', elections_path %>
 <%= link_to 'New Position', new_position_path(@election.id) if @user.is_admin %>
-<%= link_to 'New User', create_user_path(@election.id) if @user.is_admin %>
+<%= link_to 'Users', users_path(@election.id) if @user.is_admin %>
+<%= form_tag create_users_path(@election.id) do %>
+  <%= label_tag :num_users, "Num Users:" %>
+  <%= text_field_tag :num_users %>
+  <%= submit_tag "Create" %>
+<% end if @user.is_admin %>
 
 <h1>Positions</h1>
 <table>
